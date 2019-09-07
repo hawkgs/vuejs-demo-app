@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <TodoList />
+    <router-view />
+    <footer>
+      <nav>
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+      </nav>
+    </footer>
   </div>
 </template>
 

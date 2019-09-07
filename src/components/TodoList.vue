@@ -3,7 +3,7 @@
     <form @submit.prevent="addTodo">
       <input
         type="text"
-        placeholder="Add new to-do here"
+        placeholder="Add a new to-do here"
         v-model="todo"
       />
     </form>
