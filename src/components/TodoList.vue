@@ -1,12 +1,22 @@
 <template>
   <div class="todo-list">
-    <TodoListItem
-      v-for="(data, idx) in todos"
-      v-bind:key="idx"
-      v-bind:starred="data.starred"
-    >
-      {{ data.text }}
-    </TodoListItem>
+    <form @submit.prevent="addTodo">
+      <input
+        type="text"
+        placeholder="Add new to-do here"
+        v-model="todo"
+      />
+    </form>
+    <p v-if="!valid" class="error">You can't add an empty to-do</p>
+    <div class="todos">
+      <TodoListItem
+        v-for="(data, idx) in sortedTodos"
+        v-bind:key="idx"
+        v-bind:starred="data.starred"
+      >
+        {{ data.text }}
+      </TodoListItem>
+    </div>
   </div>
 </template>
 
@@ -18,10 +28,40 @@ export default {
   components: { TodoListItem },
   data() {
     return {
+      valid: true,
+      todo: '',
       todos: [
-        { text: 'Groceries', starred: true },
         { text: 'Meeting', starred: false },
+        { text: 'Groceries', starred: true },
       ]
+    }
+  },
+  computed: {
+    sortedTodos() {
+      return this.todos.sort((a, b) => {
+        if (a.starred === b.starred) {
+          return 0;
+        }
+        if (a.starred) {
+          return -1;
+        }
+        if (b.starred) {
+          return 1;
+        }
+      })
+    }
+  },
+  methods: {
+    addTodo() {
+      this.valid = !!this.todo.length;
+      if (!this.valid) {
+        return;
+      }
+      this.todos.push({
+        text: this.todo,
+        starred: false
+      });
+      this.todo = '';
     }
   }
 }
@@ -34,4 +74,25 @@ export default {
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
+
+  form {
+    width: inherit;
+  }
+
+  input {
+    width: inherit;
+    border: none;
+    font-size: 16px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    color: #666;
+  }
+
+  .error {
+    text-align: center;
+    font-size: 12px;
+    color: rgb(209, 75, 75);
+    margin: 5px 0;
+  }
+
 </style>
