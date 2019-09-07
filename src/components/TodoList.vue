@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     sortedTodos() {
-      return this.todos.sort((a, b) => {
+      return this.todos.slice().sort((a, b) => {
         if (a.starred === b.starred) {
           return 0;
         }
