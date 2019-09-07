@@ -1,30 +1,16 @@
 <template>
   <div id="app">
-    <ToDo
-      v-for="(data, idx) in todos"
-      v-bind:key="idx"
-      v-bind:starred="data.starred"
-    >
-      {{ data.text }}
-    </Todo>
+    <TodoList />
   </div>
 </template>
 
 <script>
-import ToDo from './components/ToDo.vue'
+import TodoList from './components/TodoList.vue'
 
 export default {
   name: 'app',
   components: {
-    ToDo
-  },
-  data() {
-    return {
-      todos: [
-        { text: 'Groceries', starred: true },
-        { text: 'Meeting', starred: false },
-      ]
-    }
+    TodoList
   }
 }
 </script>

@@ -6,9 +6,8 @@
 
 <script>
 export default {
-  name: 'ToDo',
+  name: 'TodoListItem',
   props: {
-     text: String,
     starred: Boolean
   }
 }
