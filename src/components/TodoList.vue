@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     addTodo() {
-      this.valid = !!this.todo.length;
+      this.valid = !!this.todo.trim().length;
       if (!this.valid) {
         return;
       }
