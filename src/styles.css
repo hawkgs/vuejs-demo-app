@@ -8,3 +8,7 @@ body {
   font-size: 16px;
   color: #415263;
 }
+
+p {
+  margin: 0;
+}
