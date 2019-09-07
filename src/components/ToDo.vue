@@ -1,14 +1,14 @@
 <template>
-  <li v-bind:class="{ starred }">
-    {{ text }}
-  </li>
+  <div v-bind:class="{ starred }">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ToDo',
   props: {
-    text: String,
+     text: String,
     starred: Boolean
   }
 }
