@@ -5,8 +5,10 @@
       <slot></slot>
     </p>
     <div class="actions">
-      <span>{{ starred ? 'Unstar' : 'Star' }}</span>
-      <span>Done</span>
+      <span v-on:click="toggleStar">
+        {{ starred ? 'Unstar' : 'Star' }}
+      </span>
+      <span v-on:click="markDone">Done</span>
     </div>
   </div>
 </template>
@@ -15,12 +17,13 @@
 export default {
   name: 'TodoListItem',
   props: {
-    starred: Boolean
+    starred: Boolean,
+    markDone: Function,
+    toggleStar: Function
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .todo-list-item {
     border-top: 1px solid #eee;

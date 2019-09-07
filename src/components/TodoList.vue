@@ -13,6 +13,8 @@
         v-for="(data, idx) in sortedTodos"
         v-bind:key="idx"
         v-bind:starred="data.starred"
+        v-bind:markDone="() => markTodoDone(idx)"
+        v-bind:toggleStar="() => toggleTodoStar(idx)"
       >
         {{ data.text }}
       </TodoListItem>
@@ -62,6 +64,12 @@ export default {
         starred: false
       });
       this.todo = '';
+    },
+    markTodoDone(idx) {
+      this.todos.splice(idx, 1);
+    },
+    toggleTodoStar(idx) {
+      this.todos[idx].starred = !this.todos[idx].starred;
     }
   }
 }
@@ -94,5 +102,4 @@ export default {
     color: rgb(209, 75, 75);
     margin: 5px 0;
   }
-
 </style>
